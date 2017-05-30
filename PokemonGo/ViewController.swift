@@ -15,6 +15,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     var gerenciadorLocalizacao = CLLocationManager()
     var contador = 0
+    var coreDataPokemon: CoreDataPokemon!
+    var pokemons: [Pokemon] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,11 +26,19 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         gerenciadorLocalizacao.requestWhenInUseAuthorization()
         gerenciadorLocalizacao.startUpdatingLocation()
         
+        // recuperar pokemons
+        self.coreDataPokemon = CoreDataPokemon()
+        self.pokemons = self.coreDataPokemon.recuperarTodosPokemons()
+        
         //exibir pokemons
         Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { (timer) in
             
+            let pokemonInficeAleatorio = arc4random_uniform(UInt32(self.pokemons.count))
+            
+            let pokemom = self.pokemons[Int(pokemonInficeAleatorio)]
+            
             if let cordenadas = self.gerenciadorLocalizacao.location?.coordinate {
-                let anotacao = MKPointAnnotation()
+                let anotacao = PokemonAnotacao(coordenadas: cordenadas)
                 
                 let latAleatoria = (Double(arc4random_uniform(400)) - 200 ) / 100000.0
                 let longAleatoria = (Double(arc4random_uniform(400)) - 200 ) / 100000.0
