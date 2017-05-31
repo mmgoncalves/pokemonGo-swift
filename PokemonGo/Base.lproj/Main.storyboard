@@ -44,6 +44,7 @@
                                 <state key="normal" image="pokeball"/>
                                 <connections>
                                     <action selector="abrirPokedex:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Il-QY-XN7"/>
+                                    <segue destination="Tyr-BJ-Xjf" kind="presentation" id="tnr-8N-QPR"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -67,9 +68,67 @@
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
         </scene>
+        <!--Poke Agenda View Controller-->
+        <scene sceneID="jO4-oQ-Dp2">
+            <objects>
+                <viewController id="Tyr-BJ-Xjf" customClass="PokeAgendaViewController" customModule="PokemonGo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vgt-BM-T8T"/>
+                        <viewControllerLayoutGuide type="bottom" id="yTD-zD-CzT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HT7-G6-4Wy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PP7-CT-8FN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellPokeAgenda" id="Yav-oR-xqN">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yav-oR-xqN" id="e9X-Vv-UCp">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Tyr-BJ-Xjf" id="8cs-UB-1R6"/>
+                                    <outlet property="delegate" destination="Tyr-BJ-Xjf" id="Coy-Pm-poo"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="At6-dV-uMN">
+                                <rect key="frame" x="162" y="607" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ZEJ-gv-O7y"/>
+                                    <constraint firstAttribute="width" constant="50" id="b8H-lT-wBm"/>
+                                </constraints>
+                                <state key="normal" image="map"/>
+                                <connections>
+                                    <action selector="voltarMapa:" destination="Tyr-BJ-Xjf" eventType="touchUpInside" id="sYj-vC-EZf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="At6-dV-uMN" firstAttribute="centerX" secondItem="HT7-G6-4Wy" secondAttribute="centerX" id="HpJ-8A-RHr"/>
+                            <constraint firstItem="PP7-CT-8FN" firstAttribute="top" secondItem="HT7-G6-4Wy" secondAttribute="top" id="YYd-Xg-RAe"/>
+                            <constraint firstItem="PP7-CT-8FN" firstAttribute="leading" secondItem="HT7-G6-4Wy" secondAttribute="leading" id="aLO-pg-LSO"/>
+                            <constraint firstAttribute="trailing" secondItem="PP7-CT-8FN" secondAttribute="trailing" id="doN-Ni-bfR"/>
+                            <constraint firstItem="yTD-zD-CzT" firstAttribute="top" secondItem="PP7-CT-8FN" secondAttribute="bottom" id="oXh-pV-cYj"/>
+                            <constraint firstItem="yTD-zD-CzT" firstAttribute="top" secondItem="At6-dV-uMN" secondAttribute="bottom" constant="10" id="qhr-Xo-2H5"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OAa-RN-lD0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="769" y="124"/>
+        </scene>
     </scenes>
     <resources>
         <image name="compass" width="512" height="512"/>
+        <image name="map" width="512" height="512"/>
         <image name="pokeball" width="512" height="512"/>
     </resources>
 </document>

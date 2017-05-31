@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C36EED3C1EDE585D001FD7E0 /* PokeAgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36EED3B1EDE585D001FD7E0 /* PokeAgendaViewController.swift */; };
 		C376528D1EDD0A9300CAAA4E /* CoreDataPokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C376528C1EDD0A9300CAAA4E /* CoreDataPokemon.swift */; };
 		C376528F1EDD131700CAAA4E /* PokemonAnotacao.swift in Sources */ = {isa = PBXBuildFile; fileRef = C376528E1EDD131700CAAA4E /* PokemonAnotacao.swift */; };
 		C3F1441E1EDB7E5C005A2049 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F1441D1EDB7E5C005A2049 /* AppDelegate.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C36EED3B1EDE585D001FD7E0 /* PokeAgendaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokeAgendaViewController.swift; sourceTree = "<group>"; };
 		C376528C1EDD0A9300CAAA4E /* CoreDataPokemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataPokemon.swift; sourceTree = "<group>"; };
 		C376528E1EDD131700CAAA4E /* PokemonAnotacao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonAnotacao.swift; sourceTree = "<group>"; };
 		C3F1441A1EDB7E5C005A2049 /* PokemonGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +70,7 @@
 				C3F1441F1EDB7E5C005A2049 /* ViewController.swift */,
 				C376528E1EDD131700CAAA4E /* PokemonAnotacao.swift */,
 				C3F144211EDB7E5C005A2049 /* Main.storyboard */,
+				C36EED3B1EDE585D001FD7E0 /* PokeAgendaViewController.swift */,
 				C3F144271EDB7E5C005A2049 /* Assets.xcassets */,
 				C3F144291EDB7E5C005A2049 /* LaunchScreen.storyboard */,
 				C3F1442C1EDB7E5C005A2049 /* Info.plist */,
@@ -162,6 +165,7 @@
 				C3F144201EDB7E5C005A2049 /* ViewController.swift in Sources */,
 				C3F1441E1EDB7E5C005A2049 /* AppDelegate.swift in Sources */,
 				C3F144261EDB7E5C005A2049 /* PokemonGo.xcdatamodeld in Sources */,
+				C36EED3C1EDE585D001FD7E0 /* PokeAgendaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

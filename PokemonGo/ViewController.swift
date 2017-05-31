@@ -32,13 +32,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         //exibir pokemons
         Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { (timer) in
-            
-            let pokemonInficeAleatorio = arc4random_uniform(UInt32(self.pokemons.count))
-            
-            let pokemom = self.pokemons[Int(pokemonInficeAleatorio)]
-            
             if let cordenadas = self.gerenciadorLocalizacao.location?.coordinate {
-                let anotacao = PokemonAnotacao(coordenadas: cordenadas)
+                
+                let pokemonInficeAleatorio = arc4random_uniform(UInt32(self.pokemons.count))
+                let pokemon = self.pokemons[Int(pokemonInficeAleatorio)]
+                
+                let anotacao = PokemonAnotacao(coordenadas: cordenadas, pokemon: pokemon)
                 
                 let latAleatoria = (Double(arc4random_uniform(400)) - 200 ) / 100000.0
                 let longAleatoria = (Double(arc4random_uniform(400)) - 200 ) / 100000.0
@@ -112,7 +111,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         if annotation is MKUserLocation {
             anotacaoView.image = #imageLiteral(resourceName: "player")
         } else {
-            anotacaoView.image = #imageLiteral(resourceName: "pikachu-2")  
+            let pokemon = (annotation as! PokemonAnotacao).pokemon
+            
+            anotacaoView.image = UIImage.init(named: (pokemon?.nomeImagem)!)
         }
         
         var frame = anotacaoView.frame
@@ -122,6 +123,18 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         anotacaoView.frame = frame
         
         return anotacaoView
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let anotacao = view.annotation
+        let pokemon = (anotacao as! PokemonAnotacao).pokemon
+        mapView.deselectAnnotation(anotacao, animated: true)
+        
+        if anotacao is MKUserLocation {
+            return
+        }
+        
+        self.coreDataPokemon.salvarPokemon(pokemon: pokemon!)
     }
 }
 
