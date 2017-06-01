@@ -127,14 +127,42 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let anotacao = view.annotation
-        let pokemon = (anotacao as! PokemonAnotacao).pokemon
+        let pokemon = (anotacao as! PokemonAnotacao).pokemon!
+        
         mapView.deselectAnnotation(anotacao, animated: true)
         
         if anotacao is MKUserLocation {
             return
         }
         
-        self.coreDataPokemon.salvarPokemon(pokemon: pokemon!)
+        if let coordAnotacao = anotacao?.coordinate {
+            let regiao = MKCoordinateRegionMakeWithDistance(coordAnotacao, 200, 200)
+            mapa.setRegion(regiao, animated: true)
+        }
+        
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (timer) in
+            if let coord = self.gerenciadorLocalizacao.location?.coordinate {
+                if MKMapRectContainsPoint(self.mapa.visibleMapRect, MKMapPointForCoordinate(coord)) {
+                    self.coreDataPokemon.salvarPokemon(pokemon: pokemon)
+                    self.mapa.removeAnnotation(anotacao!)
+                    
+                    let alertController = UIAlertController(title: "Parabéns!!!", message: "Você capturou o pokemón: \(pokemon.nome!)", preferredStyle: .alert)
+                    
+                    let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertController.addAction(ok)
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                    
+                } else {
+                    let alertController = UIAlertController(title: "Você não pode capturar", message: "Você precisa se aproximar mais para capturar o \(pokemon.nome!)", preferredStyle: .alert)
+                    
+                    let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertController.addAction(ok)
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
     }
 }
 
